@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private bool isGrounded = true;
     //private bool isEating = false;
+    private bool canDoubleJump = false;
 
     private bool isChangingColor = false; //Might not be necessary.
 
@@ -40,9 +41,17 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Eat());
         }
         */
-        if (Input.GetKeyDown(KeyCode.X) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            Jump();
+            if (isGrounded)
+            {
+                Jump();
+            } else if (canDoubleJump)
+            {
+                Jump();
+                canDoubleJump = false;
+            }
+            
         }
     }
     void HandleMovement()
@@ -67,7 +76,8 @@ public class PlayerController : MonoBehaviour
     }
     void Jump()
     {
-        rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
+        rb.linearVelocity += Vector2.up * jumpForce;
         isGrounded = false;
     }
     void UpdateCooldowns()
@@ -102,7 +112,9 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            canDoubleJump = true;
         }
+        
     }
     void OnCollisionExit2D(Collision2D collision)
     {
