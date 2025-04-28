@@ -3,14 +3,17 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 12f;
-    public Color[] availableColors;
+
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private bool isGrounded = true;
-    private bool isEating = false;
-    private bool isChangingColor = false;
-    private float colorChangeCooldown = 0f;
+    //private bool isEating = false;
+
+    private bool isChangingColor = false; //Might not be necessary.
+
+    //TODO: Add a boolean to check the character's color.
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -28,25 +31,31 @@ public class PlayerController : MonoBehaviour
     }
     void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.W) && colorChangeCooldown <= 0f)
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             StartCoroutine(ChangeColor());
         }
-        if (Input.GetKeyDown(KeyCode.E) && !isEating)
+        /*if (Input.GetKeyDown(KeyCode.E) && !isEating)
         {
             StartCoroutine(Eat());
         }
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        */
+        if (Input.GetKeyDown(KeyCode.X) && isGrounded)
         {
             Jump();
         }
     }
     void HandleMovement()
     {
+        //Change sign depending on input (left or right)
         float moveInput = 0f;
-        if (Input.GetKey(KeyCode.A)) moveInput = -1f;
-        if (Input.GetKey(KeyCode.D)) moveInput = 1f;
-        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+        if (Input.GetKey(KeyCode.LeftArrow)) moveInput = -1f;
+        if (Input.GetKey(KeyCode.RightArrow)) moveInput = 1f;
+
+        //Move
+        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+
+        //Flip character sprite depending on input (left or right)
         if (moveInput > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
@@ -63,31 +72,33 @@ public class PlayerController : MonoBehaviour
     }
     void UpdateCooldowns()
     {
-        if (colorChangeCooldown > 0f)
-        {
-            colorChangeCooldown -= Time.deltaTime;
-        }
+        
     }
+
+    //TODO: Should be instantaneous.
     System.Collections.IEnumerator ChangeColor()
     {
         isChangingColor = true;
-        if (availableColors.Length > 0)
-        {
-            Color newColor = availableColors[Random.Range(0, availableColors.Length)];
-            spriteRenderer.color = newColor;
-        }
         yield return new WaitForSeconds(0.5f);
         isChangingColor = false;
-        colorChangeCooldown = 1f;
     }
-    System.Collections.IEnumerator Eat()
+
+    /*System.Collections.IEnumerator Eat()
     {
         isEating = true;
         yield return new WaitForSeconds(1f);
         isEating = false;
-    }
+    }*/
+
+
+    //Ground detection
+    //TODO: Since it uses its collision with objects tagged as "Ground" to determine
+    //whether it's grounded, this will complicate the implementation of walls, since
+    //we'll need to differentiate them as otherwise the character won't be able to
+    //jump while touching them. It might be best to use gizmos.
     void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
@@ -102,9 +113,9 @@ public class PlayerController : MonoBehaviour
     }
     void UpdateAnimations()
     {
-        animator.SetBool("IsWalking", Mathf.Abs(rb.velocity.x) > 0.1f && isGrounded);
+        animator.SetBool("IsWalking", Mathf.Abs(rb.linearVelocity.x) > 0.1f && isGrounded);
         animator.SetBool("IsJumping", !isGrounded);
-        animator.SetBool("IsEating", isEating);
+        //animator.SetBool("IsEating", isEating);
         animator.SetBool("IsChangingColor", isChangingColor);
     }
     void LateUpdate()
