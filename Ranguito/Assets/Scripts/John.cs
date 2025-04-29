@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private bool isGrounded = true;
     //private bool isEating = false;
-    private bool canDoubleJump = false;
+    private bool canDoubleJump = true;
     private bool isDoubleJumping = false;
 
 
@@ -37,6 +37,10 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (isGrounded)
+        {
+            canDoubleJump = true;
+        }
         GroundDetection();
         HandleMovement();
     }
@@ -58,6 +62,7 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
             {
                 Jump();
+                
             }
             else if (canDoubleJump)
             {
@@ -91,7 +96,6 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(rb.linearVelocityX, 0);
         rb.linearVelocity += Vector2.up * jumpForce;
-        isGrounded = false;
     }
     void UpdateCooldowns()
     {
