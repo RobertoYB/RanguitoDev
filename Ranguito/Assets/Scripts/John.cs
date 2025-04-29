@@ -1,6 +1,7 @@
 using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
+
     public float moveSpeed = 5f;
     public float jumpForce = 12f;
 
@@ -12,9 +13,9 @@ public class PlayerController : MonoBehaviour
     private bool canDoubleJump = false;
     private bool isDoubleJumping = false;
 
-    private bool isChangingColor = false; //Might not be necessary.
 
-    //TODO: Add a boolean to check the character's color.
+    public bool playerColor = false;
+    // False is Green, True is Magenta
 
     void Start()
     {
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            StartCoroutine(ChangeColor());
+            ChangeColor();
         }
 
         /*if (Input.GetKeyDown(KeyCode.E) && !isEating)
@@ -45,12 +46,13 @@ public class PlayerController : MonoBehaviour
         }
         */
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGrounded)
             {
                 Jump();
-            } else if (canDoubleJump)
+            }
+            else if (canDoubleJump)
             {
                 isDoubleJumping = true;
                 Jump();
@@ -86,15 +88,21 @@ public class PlayerController : MonoBehaviour
     }
     void UpdateCooldowns()
     {
-        
+
     }
 
     //TODO: Should be instantaneous.
-    System.Collections.IEnumerator ChangeColor()
+    public void ChangeColor()
     {
-        isChangingColor = true;
-        yield return new WaitForSeconds(0.5f);
-        isChangingColor = false;
+        if (playerColor is true)
+        {
+            playerColor = false;
+        }
+        else if (playerColor is false)
+        {
+            playerColor = true;
+        }
+
     }
 
     /*System.Collections.IEnumerator Eat()
@@ -119,7 +127,7 @@ public class PlayerController : MonoBehaviour
             canDoubleJump = true;
             isDoubleJumping = false;
         }
-        
+
     }
     void OnCollisionExit2D(Collision2D collision)
     {
@@ -132,9 +140,10 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetBool("IsWalking", Mathf.Abs(rb.linearVelocity.x) > 0.1f && isGrounded);
         animator.SetBool("IsJumping", !isGrounded);
-        animator.SetBool("IsDoubleJumping", !isDoubleJumping);
+        animator.SetBool("IsDoubleJumping", isDoubleJumping);
+        animator.SetBool("playerColor", playerColor);
         //animator.SetBool("IsEating", isEating);
-        animator.SetBool("IsChangingColor", isChangingColor);
+
     }
     void LateUpdate()
     {
