@@ -521,7 +521,7 @@ MonoBehaviour:
   jumpForce: 12
   playerColor: 0
   jumpGizmo: {x: 0, y: -0.76}
-  groundCollisionBox: {x: 1.3, y: 0.5}
+  groundCollisionBox: {x: 1.25, y: 0.5}
   groundCollisionAngle: 0
   layer:
     serializedVersion: 2
