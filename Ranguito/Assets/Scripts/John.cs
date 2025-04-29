@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = true;
     //private bool isEating = false;
     private bool canDoubleJump = false;
+    private bool isDoubleJumping = false;
 
     private bool isChangingColor = false; //Might not be necessary.
 
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        //Initialize components
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -36,11 +38,13 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(ChangeColor());
         }
+
         /*if (Input.GetKeyDown(KeyCode.E) && !isEating)
         {
             StartCoroutine(Eat());
         }
         */
+
         if (Input.GetKeyDown(KeyCode.X))
         {
             if (isGrounded)
@@ -48,10 +52,10 @@ public class PlayerController : MonoBehaviour
                 Jump();
             } else if (canDoubleJump)
             {
+                isDoubleJumping = true;
                 Jump();
                 canDoubleJump = false;
             }
-            
         }
     }
     void HandleMovement()
@@ -113,6 +117,7 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
             canDoubleJump = true;
+            isDoubleJumping = false;
         }
         
     }
@@ -127,6 +132,7 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetBool("IsWalking", Mathf.Abs(rb.linearVelocity.x) > 0.1f && isGrounded);
         animator.SetBool("IsJumping", !isGrounded);
+        animator.SetBool("IsDoubleJumping", !isDoubleJumping);
         //animator.SetBool("IsEating", isEating);
         animator.SetBool("IsChangingColor", isChangingColor);
     }
