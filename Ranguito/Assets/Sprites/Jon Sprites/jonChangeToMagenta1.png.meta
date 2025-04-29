@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      jonChangeToMagenta1_0: -421356458033702797
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
