@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 public class PlayerController : MonoBehaviour
 {
 
@@ -14,8 +15,12 @@ public class PlayerController : MonoBehaviour
     private bool isDoubleJumping = false;
 
 
-    public bool playerColor = false;
-    // False is Green, True is Magenta
+    public bool playerColor = false; // False is Green, True is Magenta
+
+    [SerializeField] private Vector2 jumpGizmo;
+    [SerializeField] private Vector2 groundCollisionBox;
+    [SerializeField] private float groundCollisionAngle;
+    public LayerMask layer;
 
     void Start()
     {
@@ -23,6 +28,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        layer = LayerMask.GetMask("Ground");
     }
     void Update()
     {
@@ -31,6 +37,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        GroundDetection();
         HandleMovement();
     }
     void HandleInput()
@@ -91,7 +98,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    //TODO: Should be instantaneous.
     public void ChangeColor()
     {
         if (playerColor is true)
@@ -113,29 +119,17 @@ public class PlayerController : MonoBehaviour
     }*/
 
 
-    //Ground detection
-    //TODO: Since it uses its collision with objects tagged as "Ground" to determine
-    //whether it's grounded, this will complicate the implementation of walls, since
-    //we'll need to differentiate them as otherwise the character won't be able to
-    //jump while touching them. It might be best to use gizmos.
-    void OnCollisionEnter2D(Collision2D collision)
+    private void GroundDetection()
     {
-
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-            canDoubleJump = true;
-            isDoubleJumping = false;
-        }
-
+        isGrounded = Physics2D.OverlapBox((Vector2)transform.position + jumpGizmo, groundCollisionBox, groundCollisionAngle, layer);
     }
-    void OnCollisionExit2D(Collision2D collision)
+
+    public void OnDrawGizmos()
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube((Vector2)transform.position + jumpGizmo, groundCollisionBox);
     }
+
     void UpdateAnimations()
     {
         animator.SetBool("IsWalking", Mathf.Abs(rb.linearVelocity.x) > 0.1f && isGrounded);
