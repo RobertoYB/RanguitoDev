@@ -1,10 +1,15 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEditor.Experimental.GraphView.GraphView;
 public class PlayerController : MonoBehaviour
 {
 
     public float moveSpeed = 5f;
     public float jumpForce = 12f;
+
+    public int health = 3;
+    public int damageCooldown = 2;
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -20,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 jumpGizmo;
     [SerializeField] private Vector2 groundCollisionBox;
     [SerializeField] private float groundCollisionAngle;
-    public LayerMask layer;
+    public LayerMask groundLayer;
 
     void Start()
     {
@@ -28,7 +33,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        layer = LayerMask.GetMask("Ground");
+        groundLayer = LayerMask.GetMask("Ground");
     }
     void Update()
     {
@@ -70,6 +75,16 @@ public class PlayerController : MonoBehaviour
                 Jump();
                 canDoubleJump = false;
             }
+        }
+    }
+
+    public void TakeDamage()
+    {
+        health--;
+
+        if (health == 0)
+        {
+            SceneManager.LoadScene("MenuPrincipal");
         }
     }
     void HandleMovement()
@@ -125,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
     private void GroundDetection()
     {
-        isGrounded = Physics2D.OverlapBox((Vector2)transform.position + jumpGizmo, groundCollisionBox, groundCollisionAngle, layer);
+        isGrounded = Physics2D.OverlapBox((Vector2)transform.position + jumpGizmo, groundCollisionBox, groundCollisionAngle, groundLayer);
     }
 
     public void OnDrawGizmos()
