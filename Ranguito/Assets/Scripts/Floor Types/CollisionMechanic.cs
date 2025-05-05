@@ -8,8 +8,8 @@ public class CollisionMechanic : MonoBehaviour
         Red, Green, Magenta
     }
 
-    private int invincibilityFrames = 7;
-    [SerializeField] private int damageCooldown;
+    private float invincibilityFrames = 0.13f;
+    [SerializeField] private float damageCooldown;
 
     void Start()
     {
@@ -59,7 +59,7 @@ public class CollisionMechanic : MonoBehaviour
     {
         if (damageCooldown > 0)
         {
-            damageCooldown--;
+            damageCooldown -= Time.deltaTime;
             return;
         }
 
