@@ -8,7 +8,7 @@ public class CollisionMechanic : MonoBehaviour
         Red, Green, Magenta
     }
 
-    private float invincibilityFrames = 0.13f;
+    private float invincibilityFrames = 0.16f;
     [SerializeField] private float damageCooldown;
 
     void Start()
