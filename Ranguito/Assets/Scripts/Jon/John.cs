@@ -12,12 +12,11 @@ public class PlayerController : MonoBehaviour
     public int damageCooldown = 2;
 
     private Rigidbody2D rb;
-    private SpriteRenderer spriteRenderer;
     private Animator animator;
-    private bool isGrounded = true;
+    [SerializeField]private bool isGrounded = true;
     //private bool isEating = false;
-    private bool canDoubleJump = true;
-    private bool isDoubleJumping = false;
+    [SerializeField] private bool canDoubleJump = true;
+    [SerializeField] private bool isDoubleJumping = false;
 
 
     public bool playerColor = false; // False is Green, True is Magenta
@@ -31,7 +30,6 @@ public class PlayerController : MonoBehaviour
     {
         //Initialize components
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         groundLayer = LayerMask.GetMask("Ground");
     }
@@ -42,11 +40,12 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        GroundDetection();
         if (isGrounded)
         {
+            isDoubleJumping = false;
             canDoubleJump = true;
         }
-        GroundDetection();
         HandleMovement();
     }
     void HandleInput()
@@ -67,7 +66,6 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
             {
                 Jump();
-                
             }
             else if (canDoubleJump)
             {
@@ -153,7 +151,7 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetBool("IsWalking", Mathf.Abs(rb.linearVelocity.x) > 0.1f && isGrounded);
         animator.SetBool("IsJumping", !isGrounded);
-        animator.SetBool("IsDoubleJumping", isDoubleJumping);
+        animator.SetBool("IsDoubleJumping", isDoubleJumping && !isGrounded);
         animator.SetBool("playerColor", playerColor);
         //animator.SetBool("IsEating", isEating);
 
