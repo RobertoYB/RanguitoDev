@@ -84,6 +84,16 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("MenuPrincipal");
         }
     }
+
+    public void Heal(int heal)
+    {
+        health += heal;
+
+        if (health > 3)
+        {
+            health = 3;
+        }
+    }
     void HandleMovement()
     {
         //Change sign depending on input (left or right)
