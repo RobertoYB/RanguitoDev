@@ -5,10 +5,10 @@ using UnityEngine;
 public class enemigoSnakeComportamiento : MonoBehaviour
 {
 
-    public float speed;
+    public float speed = 4;
     public bool esDerecha;
     public float contadorTiempo;
-    public float tiempoDeCambio;
+    public float tiempoDeCambio = 5;
 
     void Start()
     {
