@@ -10,6 +10,7 @@ public class HealItem : MonoBehaviour
             if (collision.gameObject.GetComponent<PlayerController>().health < 3)
             {
                 collision.gameObject.GetComponent<PlayerController>().Heal(heal);
+                collision.gameObject.GetComponent<AudioController>().PlayAudio(3);
                 Destroy(gameObject);
             }
         }
