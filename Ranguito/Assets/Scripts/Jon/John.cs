@@ -10,8 +10,9 @@ public class PlayerController : MonoBehaviour
     public int health = 3;
     public int damageCooldown = 2;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private Animator animator;
+    private AudioController audioController;
     [SerializeField]private bool isGrounded = true;
     //private bool isEating = false;
     [SerializeField] private bool canDoubleJump = true;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
         //Initialize components
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioController = GetComponent<AudioController>();
         groundLayer = LayerMask.GetMask("Ground");
     }
     void Update()
@@ -65,11 +67,13 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
             {
                 Jump();
+                audioController.PlayAudio(1);
             }
             else if (canDoubleJump)
             {
                 isDoubleJumping = true;
                 Jump();
+                audioController.PlayAudio(2);
                 canDoubleJump = false;
             }
         }
@@ -78,6 +82,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage()
     {
         health--;
+        audioController.PlayAudio(0);
 
         if (health == 0)
         {

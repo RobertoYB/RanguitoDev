@@ -8,6 +8,7 @@ TagManager:
   - Red
   - Green
   - Magenta
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -44,6 +45,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Lava Top
+    uniqueID: 1429569799
     locked: 0
   m_RenderingLayers:
   - Default
