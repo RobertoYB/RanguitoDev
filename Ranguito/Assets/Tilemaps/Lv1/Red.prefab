@@ -144,7 +144,7 @@ Tilemap:
       m_AnimatedSprites:
       - {fileID: 887695632, guid: b0d86ac15a3bdd54d979f28d28d96d03, type: 3}
       - {fileID: 1659554242, guid: b0d86ac15a3bdd54d979f28d28d96d03, type: 3}
-      m_AnimationSpeed: 1
+      m_AnimationSpeed: 4
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -265,7 +265,7 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &1842573213147010647
+--- !u!114 &1271765930487064334
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
