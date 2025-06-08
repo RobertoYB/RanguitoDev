@@ -7,7 +7,7 @@ public class HealItem : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (collision.gameObject.GetComponent<PlayerController>().health < 3)
+            if (PlayerController.health < 3)
             {
                 collision.gameObject.GetComponent<PlayerController>().Heal(heal);
                 collision.gameObject.GetComponent<AudioController>().PlayAudio(3);

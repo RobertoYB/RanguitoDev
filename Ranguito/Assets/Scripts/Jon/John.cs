@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 12f;
 
-    public int health = 3;
+    public static int health = 3;
     public int damageCooldown = 2;
 
     public Rigidbody2D rb;

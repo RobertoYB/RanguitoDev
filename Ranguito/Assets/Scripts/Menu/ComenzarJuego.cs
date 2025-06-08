@@ -7,6 +7,7 @@ public class ManagerDeJuego : MonoBehaviour
 {
     public void StartGame()
     {
+        PlayerController.health = 3;
         SceneManager.LoadScene("NIVEL");
     }
 }
