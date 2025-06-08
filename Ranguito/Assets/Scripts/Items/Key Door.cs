@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KeyDoor : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class KeyDoor : MonoBehaviour
         if (canOpen)
         {
             keyManager.UseKey();
-            Destroy(gameObject);
+            SceneManager.LoadScene("lv1-2_boss");
         }
     }
 
