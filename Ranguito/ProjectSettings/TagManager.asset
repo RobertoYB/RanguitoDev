@@ -8,6 +8,7 @@ TagManager:
   - Red
   - Green
   - Magenta
+  - Boss
   layers:
   - Default
   - TransparentFX
