@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 4d35e9a8d752be14a9ae277bb56358f0
+guid: 8d53d993b93056f4d91a80e4b380488e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8828621467243431593
-    second: rosado_0
+      213: 1351106190014182291
+    second: jonBossObjects_0
+  - first:
+      213: 3336671683278131515
+    second: jonBossObjects_1
+  - first:
+      213: 6252091665207527805
+    second: jonBossObjects_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +132,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rosado_0
+      name: jonBossObjects_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 200
-        height: 200
+        x: 7
+        y: 2
+        width: 24
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +147,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 75931943d8f6a7580800000000000000
-      internalID: -8828621467243431593
+      spriteID: 39370addbe710c210800000000000000
+      internalID: 1351106190014182291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jonBossObjects_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 3
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b31d5eda73d3e4e20800000000000000
+      internalID: 3336671683278131515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jonBossObjects_2
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 3
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7900e79e34e3c650800000000000000
+      internalID: 6252091665207527805
       vertices: []
       indices: 
       edges: []
@@ -160,8 +210,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      rosado_0: -8828621467243431593
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
