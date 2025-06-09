@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossPhase3 : MonoBehaviour
 {
@@ -17,9 +19,15 @@ public class BossPhase3 : MonoBehaviour
     public GameObject RedSpike1;
     public GameObject RedSpike2;
 
+    private Animator animator;
+    private bool isDamaged = false;
+    private bool isAttacking = false;
+
+    private float endTime = 8f;
+
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -48,6 +56,17 @@ public class BossPhase3 : MonoBehaviour
                 ThrowBone(directionToPlayer.normalized);
                 nextBoneTime = Time.time + 1f / boneRate;
             }
+            UpdateAnimations();
+        }
+        else
+        {
+            endTime -= Time.deltaTime;
+            Death();
+
+            if (endTime <= 0)
+            {
+                EndGame();
+            }
         }
     }
 
@@ -61,7 +80,7 @@ public class BossPhase3 : MonoBehaviour
     public void TakeDamage()
     {
         health--;
-
+        isDamaged = true;
         if (health <= 0)
         {
             dying = true;
@@ -69,8 +88,29 @@ public class BossPhase3 : MonoBehaviour
         }
     }
 
+    public void EndGame()
+    {
+        SceneManager.LoadScene("victory");
+    }
+
     private void Death()
     {
+        isDamaged = true;
 
+        if(transform.position != new Vector3(13.5f, -55, 0))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(13.5f, -55, 0), 5 * Time.deltaTime);
+        }
+        UpdateAnimations();
+    }
+
+
+
+    public void UpdateAnimations()
+    {
+        animator.SetBool("isDamaged", isDamaged);
+        animator.SetBool("isAttacking", isAttacking);
+        isAttacking = false;
+        isDamaged = false;
     }
 }

@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &22359394
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -812,7 +812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!156049354 &119271314
 Grid:
   m_ObjectHideFlags: 0
@@ -3578,11 +3578,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7656146512400863509, guid: a26e4b807ad09224ca43683fbc8953df, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.5
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 7656146512400863509, guid: a26e4b807ad09224ca43683fbc8953df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.5
+      value: -47.5
       objectReference: {fileID: 0}
     - target: {fileID: 7656146512400863509, guid: a26e4b807ad09224ca43683fbc8953df, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5341,13 +5341,14 @@ GameObject:
   - component: {fileID: 1481262309}
   - component: {fileID: 1481262310}
   - component: {fileID: 1481262311}
+  - component: {fileID: 1481262312}
   m_Layer: 0
   m_Name: Boss P3
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1481262307
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5437,7 +5438,7 @@ MonoBehaviour:
   nextBoneTime: 0
   boneSpeed: 20
   player: {fileID: 1524664393}
-  spikeFallTime: 20
+  spikeFallTime: 30
   nextSpikeFallTime: 0
   RedSpike1: {fileID: 294408614}
   RedSpike2: {fileID: 905276645}
@@ -5501,6 +5502,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: 0
   damageCooldown: 0
+--- !u!95 &1481262312
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481262306}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5276c635fa58e204f9fbce3d7c28f4a4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1499731349
 GameObject:
   m_ObjectHideFlags: 0
@@ -5981,7 +6004,17 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1499731356}
+    m_ColliderPaths:
+    - - X: 170000000
+        Y: -500000000
+      - X: 100000000
+        Y: -500000000
+      - X: 100000000
+        Y: -520000000
+      - X: 170000000
+        Y: -520000000
   m_CompositePaths:
     m_Paths:
     - - {x: 16.999971, y: -52}
@@ -10778,7 +10811,73 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 2124262401}
+    m_ColliderPaths:
+    - - X: 170000000
+        Y: -300000000
+      - X: 120000000
+        Y: -300000000
+      - X: 120000000
+        Y: -290000000
+      - X: 110000000
+        Y: -290000000
+      - X: 110000000
+        Y: -260000000
+      - X: 120000000
+        Y: -260000000
+      - X: 120000000
+        Y: -250000000
+      - X: 110000000
+        Y: -250000000
+      - X: 110000000
+        Y: -230000000
+      - X: 120000000
+        Y: -230000000
+      - X: 120000000
+        Y: -220000000
+      - X: 100000000
+        Y: -220000000
+      - X: 100000000
+        Y: -340000000
+      - X: 170000000
+        Y: -340000000
+    - - X: 170000000
+        Y: -230000000
+      - X: 160000000
+        Y: -230000000
+      - X: 160000000
+        Y: -240000000
+      - X: 170000000
+        Y: -240000000
+    - - X: 170000000
+        Y: -270000000
+      - X: 160000000
+        Y: -270000000
+      - X: 160000000
+        Y: -280000000
+      - X: 170000000
+        Y: -280000000
+    - - X: 180000000
+        Y: -340000000
+      - X: 170000000
+        Y: -340000000
+      - X: 170000000
+        Y: -520000000
+      - X: 180000000
+        Y: -520000000
+    - - X: 100000000
+        Y: -490000000
+      - X: -170000000
+        Y: -490000000
+      - X: -170000000
+        Y: -340000000
+      - X: -190000000
+        Y: -340000000
+      - X: -190000000
+        Y: -520000000
+      - X: 100000000
+        Y: -520000000
   m_CompositePaths:
     m_Paths:
     - - {x: 16.999971, y: -34}

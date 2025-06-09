@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoringManager : MonoBehaviour
 {
@@ -20,6 +19,13 @@ public class ScoringManager : MonoBehaviour
         else if (SceneManager.GetActiveScene().name == "lv1-2_boss")
         {
             timeBoss = Time.timeSinceLevelLoad;
+        }
+        else if (SceneManager.GetActiveScene().name == "MenuPrincipal")
+        {
+            hits = 0;
+            timeLevel = 0;
+            timeBoss = 0;
+            timeBossDeaths = 0;
         }
     }
 

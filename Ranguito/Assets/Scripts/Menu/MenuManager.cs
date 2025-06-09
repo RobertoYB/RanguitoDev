@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    public static bool enableSubmit = false;
     void Start()
     {
         
@@ -10,6 +11,7 @@ public class MenuManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        enableSubmit = false;
         SceneManager.LoadScene("MenuPrincipal");
     }
 
