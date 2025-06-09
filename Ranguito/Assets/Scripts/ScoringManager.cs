@@ -8,7 +8,7 @@ public class ScoringManager : MonoBehaviour
     public static float timeLevel = 0;
     public static float timeBoss = 0;
     public static float timeBossDeaths = 0;
-
+    public static bool gotGreat = false;
 
     private void Update()
     {
@@ -26,6 +26,7 @@ public class ScoringManager : MonoBehaviour
             timeLevel = 0;
             timeBoss = 0;
             timeBossDeaths = 0;
+            gotGreat = false;
         }
     }
 
