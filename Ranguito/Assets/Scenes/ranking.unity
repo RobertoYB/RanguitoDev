@@ -880,7 +880,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Men\xFA"
+  m_text: Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d8431978f9b986e4a99a61f8c7dabc24, type: 2}
   m_sharedMaterial: {fileID: 7093149825462936773, guid: d8431978f9b986e4a99a61f8c7dabc24, type: 2}

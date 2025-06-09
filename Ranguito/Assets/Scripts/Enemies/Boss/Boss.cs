@@ -28,7 +28,7 @@ public class Boss : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         nextFireTime = fireCooldown;
-        heartCooldown = Random.Range(2, 3);
+        heartCooldown = Random.Range(5, 8);
         attacksUntilHeart = heartCooldown;
     }
 
