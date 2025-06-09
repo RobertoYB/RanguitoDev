@@ -83,10 +83,21 @@ public class PlayerController : MonoBehaviour
     {
         health--;
         audioController.PlayAudio(0);
+        ScoringManager.hits++;
 
         if (health == 0)
-        {
-            SceneManager.LoadScene("MenuPrincipal");
+        { 
+            if(SceneManager.GetActiveScene().name == "NIVEL")
+            {
+                SceneManager.LoadScene("MenuPrincipal");
+            }
+            if(SceneManager.GetActiveScene().name == "lv1-2_boss")
+            {
+                health = 3;
+                ScoringManager.timeBossDeaths += Time.timeSinceLevelLoad;
+                SceneManager.LoadScene("lv1-2_boss");
+            }
+            
         }
     }
 
