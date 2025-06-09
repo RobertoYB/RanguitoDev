@@ -880,7 +880,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Men\xFA"
+  m_text: Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d8431978f9b986e4a99a61f8c7dabc24, type: 2}
   m_sharedMaterial: {fileID: 7093149825462936773, guid: d8431978f9b986e4a99a61f8c7dabc24, type: 2}
@@ -2311,6 +2311,7 @@ MonoBehaviour:
   textTimes: {fileID: 541679036}
   textScores: {fileID: 345733441}
   nameToSubmit: {fileID: 1244579510}
+  panel: {fileID: 1817660816}
 --- !u!1 &1817660816
 GameObject:
   m_ObjectHideFlags: 0

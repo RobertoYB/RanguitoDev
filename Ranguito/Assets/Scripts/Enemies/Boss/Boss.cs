@@ -23,12 +23,15 @@ public class Boss : MonoBehaviour
     private bool isSpitting = false;
     private bool phase1Damage = false;
 
+    private AudioController audioController;
+
 
     void Start()
     {
+        audioController = GetComponent<AudioController>();
         animator = GetComponent<Animator>();
         nextFireTime = fireCooldown;
-        heartCooldown = Random.Range(2, 3);
+        heartCooldown = Random.Range(5, 8);
         attacksUntilHeart = heartCooldown;
     }
 
@@ -50,7 +53,7 @@ public class Boss : MonoBehaviour
     public void TakeDamage()
     {
         health--;
-
+        audioController.PlayAudio(0);
         if (endPhase == 0)
         {
             phase1Damage = true;

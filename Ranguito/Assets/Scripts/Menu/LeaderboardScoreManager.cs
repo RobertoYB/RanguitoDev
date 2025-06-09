@@ -11,9 +11,16 @@ public class LeaderboardScoreManager : MonoBehaviour
     public GameObject textScores;
     public GameObject nameToSubmit;
 
+    public GameObject panel;
+
     void Start()
     {
         UpdateData();
+
+        if (MenuManager.enableSubmit)
+        {
+            panel.SetActive(true);
+        }
     }
 
     public void UpdateData()
