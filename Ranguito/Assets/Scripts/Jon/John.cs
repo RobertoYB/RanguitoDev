@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
         { 
             if(SceneManager.GetActiveScene().name == "NIVEL")
             {
+                ScoringManager.hits = 0;
                 SceneManager.LoadScene("MenuPrincipal");
             }
             if(SceneManager.GetActiveScene().name == "lv1-2_boss")
