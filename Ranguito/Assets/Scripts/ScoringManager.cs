@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoringManager : MonoBehaviour
 {
@@ -19,5 +21,10 @@ public class ScoringManager : MonoBehaviour
         {
             timeBoss = Time.timeSinceLevelLoad;
         }
+    }
+
+    public static Ranking SubmitScore(string name)
+    {
+        return new(hits, (int)MathF.Round(timeLevel + timeBoss + timeBossDeaths), name);
     }
 }
