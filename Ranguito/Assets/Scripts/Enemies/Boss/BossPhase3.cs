@@ -36,8 +36,10 @@ public class BossPhase3 : MonoBehaviour
     private bool shouldFire;
     public float startTime = 6f;
 
+    private AudioController audioController;
     void Start()
     {
+        audioController = GetComponent<AudioController>();
         animator = GetComponent<Animator>();
     }
 
@@ -141,6 +143,7 @@ public class BossPhase3 : MonoBehaviour
     public void TakeDamage()
     {
         health--;
+        audioController.PlayAudio(0);
         isDamaged = true;
         if (health <= 0)
         {

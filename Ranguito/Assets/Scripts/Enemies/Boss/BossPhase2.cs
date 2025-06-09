@@ -26,8 +26,10 @@ public class BossPhase2 : MonoBehaviour
     private Animator animator;
     private bool phase2Damage = false;
 
+    private AudioController audioController;
     void Start()
     {
+        audioController = GetComponent<AudioController>();
         animator = GetComponent<Animator>();
     }
 
@@ -43,7 +45,7 @@ public class BossPhase2 : MonoBehaviour
     public void TakeDamage()
     {
         health--;
-
+        audioController.PlayAudio(0);
         if (health > 2)
         {
             phase2Damage = true;
